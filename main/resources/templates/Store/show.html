@@ -73,7 +73,7 @@
                                          
                                         <div class="row pb-2 mb-2 border-bottom">
                                              <div class="col-4">
-                                                 <span class="fw-bold">定員</span>
+                                                 <span class="fw-bold">人数</span>
                                              </div>
                      
                                              <div class="col">
@@ -115,12 +115,12 @@
                                      <div sec:authorize="isAnonymous()" class="col-lg-4 px-0 ps-lg-4 mb-4">                  
                                          <div class="card">
                                              <div class="card-body">                                                                                                                                                                                                                     
-                                                 <p class="card-text">予約するには<a th:href="@{/login}">ログイン</a>が必要です。</p>                                                                                                                                            
-                                                 <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn" disabled>予約する</button>                                                                                                                
+                                                 <p class="card-text">予約するには<a th:href="@{/login}">有料会員登録</a>が必要です。</p>                                                                                                                                            
+                                                 <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn" disabled>有料会員登録する</button>                                                                                                                
                                              </div>
                                          </div>  
                                      </div> 
-                                                                          <div sec:authorize="isAuthenticated()" class="col-lg-4 px-0 ps-lg-4 mb-4">                  
+                                            <div sec:authorize="isAuthenticated()" class="col-lg-4 px-0 ps-lg-4 mb-4">                  
                                          <div class="card">
                                              <div class="card-body"> 
                                                  <form method="get" th:action="@{/Store/__${Store.getId()}__/reservations/input}" th:object="${reservationInputForm}">                                                                                                                                                                       
@@ -131,13 +131,13 @@
                                                      </div>
                                                      
                                                      <div class="form-group mb-4">                                            
-                                                         <label for="numberOfPeople" class="col-form-label text-md-left fw-bold">宿泊人数</label>  
+                                                         <label for="numberOfPeople" class="col-form-label text-md-left fw-bold">利用人数</label>  
                                                          <div th:if="${#fields.hasErrors('numberOfPeople')}" class="text-danger small mb-2" th:errors="*{numberOfPeople}"></div>                                            
                                                          <input type="number" class="form-control" th:field="*{numberOfPeople}" min="1">                                                                     
                                                      </div>
                                                                                                          
                                                      <div class="form-group">
-                                                         <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">予約する</button>
+                                                         <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">有料会員登録する</button>
                                                      </div>
                                                  </form>                                                                     
                                              </div>
