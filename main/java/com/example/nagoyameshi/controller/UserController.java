@@ -62,5 +62,7 @@ public class UserController {
          redirectAttributes.addFlashAttribute("successMessage", "会員情報を編集しました。");
          
          return "redirect:/user";
-     }    
+     }
+     
+     
 }

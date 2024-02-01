@@ -40,6 +40,13 @@ public class AuthController {
      public String signup(Model model) {        
          model.addAttribute("signupForm", new SignupForm());
          return "auth/signup";
+         
+     @GetMapping("/paidsignup")
+     public String paidsignup(Model model) {        
+          model.addAttribute("PaidsignupForm", new PaidSignupForm());
+          return "auth/paidsignup";
+          
+         }    
      }  
      @PostMapping("/signup")
      public String signup(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) { 
