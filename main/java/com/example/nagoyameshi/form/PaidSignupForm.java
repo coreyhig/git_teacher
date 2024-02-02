@@ -5,7 +5,6 @@ package com.example.nagoyameshi.form;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
  
-
 public class PaidSignupForm {    
      @NotBlank(message = "氏名を入力してください。")
      private String name;

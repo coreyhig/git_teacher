@@ -113,6 +113,20 @@ html {
      max-width: 300px;
  }
  
+ .btn {
+ text-align: center;
+ padding: 10px 20px;
+ background: blue;
+ color: white;
+ border-bottom: solid 5px gray;
+ border-radius: 25px;
+}
+.btn:active {
+ -webkit-transform: translateY(5px);
+ transform: translateY(5px);
+ border-bottom: none;
+}
+ 
  @media screen and (min-width: 1400px) {
    .nagoyameshi-container {
      max-width: 1200px;

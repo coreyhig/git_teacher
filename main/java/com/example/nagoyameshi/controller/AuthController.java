@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.entity.VerificationToken;
 import com.example.nagoyameshi.event.SignupEventPublisher;
+import com.example.nagoyameshi.form.PaidSignupForm;
 import com.example.nagoyameshi.form.SignupForm;
 import com.example.nagoyameshi.service.UserService;
 import com.example.nagoyameshi.service.VerificationTokenService;
@@ -41,13 +42,13 @@ public class AuthController {
          model.addAttribute("signupForm", new SignupForm());
          return "auth/signup";
          
+     }
      @GetMapping("/paidsignup")
      public String paidsignup(Model model) {        
-          model.addAttribute("PaidsignupForm", new PaidSignupForm());
-          return "auth/paidsignup";
-          
-         }    
-     }  
+         model.addAttribute("PaidSignupForm", new PaidSignupForm());
+         return "auth/paidsignup";
+     }    
+     
      @PostMapping("/signup")
      public String signup(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) { 
          // メールアドレスが登録済みであれば、BindingResultオブジェクトにエラー内容を追加する
