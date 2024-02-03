@@ -45,7 +45,7 @@ public class AuthController {
      }
      @GetMapping("/paidsignup")
      public String paidsignup(Model model) {        
-         model.addAttribute("PaidSignupForm", new PaidSignupForm());
+         model.addAttribute("paidsignupForm", new PaidSignupForm());
          return "auth/paidsignup";
      }    
      
