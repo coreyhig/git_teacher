@@ -30,5 +30,40 @@ public class PaidSignupForm {
      private String password;    
      
      @NotBlank(message = "パスワード（確認用）を入力してください。")
-     private String passwordConfirmation;    
+     private String passwordConfirmation;
+
+	public String getName() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public String getFurigana() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public String getPostalCode() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public String getAddress() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public String getPhoneNumber() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public String getEmail() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public CharSequence getPassword() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}    
 }

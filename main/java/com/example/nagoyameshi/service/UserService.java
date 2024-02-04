@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
+import com.example.nagoyameshi.form.PaidSignupForm;
 import com.example.nagoyameshi.form.SignupForm;
 import com.example.nagoyameshi.form.UserEditForm;
 import com.example.nagoyameshi.repository.RoleRepository;
@@ -39,7 +40,8 @@ public class UserService {
          user.setEnabled(false);       
          
          return userRepository.save(user);
-     }    
+     } 
+     
      @Transactional
      public void update(UserEditForm userEditForm) {
          User user = userRepository.getReferenceById(userEditForm.getId());
@@ -52,6 +54,24 @@ public class UserService {
          user.setEmail(userEditForm.getEmail());      
          
          userRepository.save(user);
+     }  
+     
+     @Transactional
+     public User paidcreate(PaidSignupForm paidsignupForm) {
+         User user = new User();
+         Role role = roleRepository.findByName("ROLE_PAIDMENBER");
+         
+         user.setName(paidsignupForm.getName());
+         user.setFurigana(paidsignupForm.getFurigana());
+         user.setPostalCode(paidsignupForm.getPostalCode());
+         user.setAddress(paidsignupForm.getAddress());
+         user.setPhoneNumber(paidsignupForm.getPhoneNumber());
+         user.setEmail(paidsignupForm.getEmail());
+         user.setPassword(passwordEncoder.encode(paidsignupForm.getPassword()));
+         user.setRole(role);
+         user.setEnabled(true);        
+         
+         return userRepository.save(user);
      }    
      
      // メールアドレスが登録済みかどうかをチェックする

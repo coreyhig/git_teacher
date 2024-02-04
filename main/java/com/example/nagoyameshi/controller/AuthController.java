@@ -90,4 +90,28 @@ public class AuthController {
          
          return "auth/verify";         
      } 
+     
+     @PostMapping("/paidsignup")
+     public String signup(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {      
+         // メールアドレスが登録済みであれば、BindingResultオブジェクトにエラー内容を追加する
+         if (userService.isEmailRegistered(signupForm.getEmail())) {
+             FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "すでに登録済みのメールアドレスです。");
+             bindingResult.addError(fieldError);                       
+         }    
+         
+         // パスワードとパスワード（確認用）の入力値が一致しなければ、BindingResultオブジェクトにエラー内容を追加する
+         if (!userService.isSamePassword(signupForm.getPassword(), signupForm.getPasswordConfirmation())) {
+             FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
+             bindingResult.addError(fieldError);
+         }        
+         
+         if (bindingResult.hasErrors()) {
+             return "auth/signup";
+         }
+         
+         userService.create(signupForm);
+         redirectAttributes.addFlashAttribute("successMessage", "有料会員登録が完了しました。");
+ 
+         return "redirect:/";
+     }    
 }
