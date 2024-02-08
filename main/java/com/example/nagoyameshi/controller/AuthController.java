@@ -26,6 +26,7 @@ public class AuthController {
 	    private final UserService userService;
 	     private final SignupEventPublisher signupEventPublisher;
 	     private final VerificationTokenService verificationTokenService;
+		private PaidSignupForm paidsignupForm;
 	     
 	     public AuthController(UserService userService, SignupEventPublisher signupEventPublisher, VerificationTokenService verificationTokenService) { 
 	         this.userService = userService;    
@@ -92,7 +93,7 @@ public class AuthController {
      } 
      
      @PostMapping("/paidsignup")
-     public String signup(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {      
+     public String signup(@ModelAttribute @Validated PaidSignupForm signupForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {      
          // メールアドレスが登録済みであれば、BindingResultオブジェクトにエラー内容を追加する
          if (userService.isEmailRegistered(signupForm.getEmail())) {
              FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "すでに登録済みのメールアドレスです。");
@@ -106,10 +107,10 @@ public class AuthController {
          }        
          
          if (bindingResult.hasErrors()) {
-             return "auth/signup";
+             return "auth/paidsignup";
          }
          
-         userService.create(signupForm);
+         userService.paidcreate(paidsignupForm);
          redirectAttributes.addFlashAttribute("successMessage", "有料会員登録が完了しました。");
  
          return "redirect:/";

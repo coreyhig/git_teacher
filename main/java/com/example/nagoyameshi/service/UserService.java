@@ -61,15 +61,7 @@ public class UserService {
          User user = new User();
          Role role = roleRepository.findByName("ROLE_PAIDMENBER");
          
-         user.setName(paidsignupForm.getName());
-         user.setFurigana(paidsignupForm.getFurigana());
-         user.setPostalCode(paidsignupForm.getPostalCode());
-         user.setAddress(paidsignupForm.getAddress());
-         user.setPhoneNumber(paidsignupForm.getPhoneNumber());
-         user.setEmail(paidsignupForm.getEmail());
-         user.setPassword(passwordEncoder.encode(paidsignupForm.getPassword()));
-         user.setRole(role);
-         user.setEnabled(true);        
+         user.setRole(role);      
          
          return userRepository.save(user);
      }    

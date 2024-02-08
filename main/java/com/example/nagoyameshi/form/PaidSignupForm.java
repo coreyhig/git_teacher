@@ -4,7 +4,9 @@ package com.example.nagoyameshi.form;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
- 
+import lombok.Data;
+
+@Data
 public class PaidSignupForm {    
      @NotBlank(message = "氏名を入力してください。")
      private String name;
@@ -31,39 +33,5 @@ public class PaidSignupForm {
      
      @NotBlank(message = "パスワード（確認用）を入力してください。")
      private String passwordConfirmation;
-
-	public String getName() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	public String getFurigana() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	public String getPostalCode() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	public String getAddress() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	public String getPhoneNumber() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	public String getEmail() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	public CharSequence getPassword() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}    
+  
 }

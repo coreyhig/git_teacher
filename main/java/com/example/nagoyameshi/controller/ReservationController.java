@@ -73,7 +73,7 @@ public class ReservationController {
          
          if (bindingResult.hasErrors()) {            
              model.addAttribute("Store", Store);            
-             model.addAttribute("errorMessage", "予約内容に不備があります。"); 
+             model.addAttribute("errorMessage", "入力内容に不備があります。"); 
              return "Store/show";
          }
          
