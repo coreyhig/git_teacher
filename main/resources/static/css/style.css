@@ -47,7 +47,8 @@ html {
  }
  
  .nagoyameshi-logo {
-   height: 30px;  
+   height: 50px;
+   width:  250px;  
  }
  
  .nagoyameshi-btn {
@@ -121,6 +122,7 @@ html {
  border-bottom: solid 5px gray;
  border-radius: 25px;
 }
+
 .btn:active {
  -webkit-transform: translateY(5px);
  transform: translateY(5px);

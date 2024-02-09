@@ -5,7 +5,20 @@
         <div th:replace="~{fragment :: styles}"></div>
       	
          <title>nagoyameshi</title>	
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $('.slider').bxSlider({
+                auto: true,
+                pause: 5000,
+            });
+        });
+</script>
      </head>
+
      <body>
                   <div class="nagoyameshi-wrapper">
              <!-- ヘッダー -->
@@ -24,15 +37,29 @@
                          <span th:text="${successMessage}"></span>
                      </div> 
                      
+                <div class="slider">
+                <img th:src="@{/images/misokatsu.jpg}"width="450" height="450">
+                <img th:src="@{/images/misonikomi.jpg}"width="450" height="450">  
+                <img th:src="@{/images/tebasaki.jpg}" width="450" height="450">
+                <img th:src="@{/images/hitumabushi.jpg}" width="450" height="450">
+                <img th:src="@{/images/kishimen.jpg}" width="450" height="450">
+			    </div>      
+
+                     
                                           <div class="d-flex justify-content-center">                                            
                          <form method="get" th:action="@{/Store}" class="mb-5 nagoyameshi-search-form">
                              <div class="input-group">
+								 
+	
                                  <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="店舗名・目的地">
                                  <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button> 
-                             </div>               
-                         </form>                        
-                     </div>                                                                                                  
-                                                      
+                             </div>
+                                                                                                                     
+                                            
+                         </form>  
+                  
+                     </div>       
+                                              
                      <h2 class="text-center mb-3">新着</h2>
                      <div class="row row-cols-lg-5 row-cols-2 g-3 mb-5">                                        
                          <div class="col" th:each="newStore : ${newStore}">
@@ -64,7 +91,7 @@
                                      <tr>
                                          <th>千種区</th>
                                          <td>
-                                             <a th:href="@{/Store?area=北海道}">千種区</a>
+                                             <a th:href="@{/Store?area=千種区}">千種区</a>
                                          </td>                                     
                                      </tr>  
                                      <tr>
