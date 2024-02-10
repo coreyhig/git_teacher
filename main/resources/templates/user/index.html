@@ -110,28 +110,18 @@
              <!-- フッター -->
              <div th:replace="~{fragment :: footer}"></div>
              
-             
-             <div class="container pt-4 pb-5 nagoyameshi-container">
-             <div class="row justify-content-center">        
-             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-7">                            
-
-             </div>
-             </div>
-             </div>   
                 
          <button id="paymentButton" class="btn text-white shadow-sm w-100 nagoyameshi-btn">有料会員登録はこちら</button>
          
          <div th:replace="~{fragment :: scripts}"></div>  
          
-         <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+         <script src="https://js.stripe.com/v3"></script>
+
          <script th:inline="javascript">
              const sessionId = /*[[${sessinId}]]*/"sessionId";                
          </script>        
          <script th:src="@{/js/stripe.js}"></script>               
-             
- 
-             
-         
+                     
    </body>
          
  
