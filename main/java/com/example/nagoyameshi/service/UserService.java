@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
-import com.example.nagoyameshi.form.PaidSignupForm;
 import com.example.nagoyameshi.form.SignupForm;
 import com.example.nagoyameshi.form.UserEditForm;
 import com.example.nagoyameshi.repository.RoleRepository;
@@ -57,14 +56,16 @@ public class UserService {
      }  
      
      @Transactional
-     public User paidcreate(PaidSignupForm paidsignupForm) {
-         User user = new User();
+     public void paidcreate(User user) {
          Role role = roleRepository.findByName("ROLE_PAIDMENBER");
          
          user.setRole(role);      
          
-         return userRepository.save(user);
-     }    
+         userRepository.save(user);
+     }  
+
+
+   
      
      // メールアドレスが登録済みかどうかをチェックする
      public boolean isEmailRegistered(String email) {

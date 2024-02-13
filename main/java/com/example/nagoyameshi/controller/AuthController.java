@@ -1,6 +1,7 @@
 package com.example.nagoyameshi.controller;
 
- import org.springframework.stereotype.Controller;
+ import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -11,12 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.entity.VerificationToken;
 import com.example.nagoyameshi.event.SignupEventPublisher;
 import com.example.nagoyameshi.form.PaidSignupForm;
 import com.example.nagoyameshi.form.SignupForm;
+import com.example.nagoyameshi.repository.UserRepository;
+import com.example.nagoyameshi.security.UserDetailsImpl;
 import com.example.nagoyameshi.service.UserService;
 import com.example.nagoyameshi.service.VerificationTokenService;
 
@@ -28,6 +30,7 @@ public class AuthController {
 	     private final SignupEventPublisher signupEventPublisher;
 	     private final VerificationTokenService verificationTokenService;
 		private PaidSignupForm paidsignupForm;
+		private UserRepository userRepository;
 	     
 	     public AuthController(UserService userService, SignupEventPublisher signupEventPublisher, VerificationTokenService verificationTokenService) { 
 	         this.userService = userService;    
@@ -46,15 +49,14 @@ public class AuthController {
          
      }
      
-     @GetMapping("/paidsignup")
-     public String paidsignup(Model model) {        
-         model.addAttribute("user", new PaidSignupForm());
-
-     public User paidcreate(PaidSignupForm paidsignupForm) {
-         User user = new User();
-         Role role = roleRepository.findByName("ROLE_PAIDMENBER");
-             
-             user.paidcreate();      
+     @GetMapping("paidsignup")
+     public void paidController(UserRepository userRepository) {
+         this.userRepository = userRepository;        
+     }    
+     public String paidsignup(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {         
+         User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());  
+         userService.paidcreate(user);
+          
          return "auth/paidsignup"; 
             
      }    
