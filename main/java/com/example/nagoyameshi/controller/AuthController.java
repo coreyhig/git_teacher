@@ -36,7 +36,8 @@ public class AuthController {
 	         this.userService = userService;    
 	         this.signupEventPublisher = signupEventPublisher;
 	         this.verificationTokenService = verificationTokenService;
-	     }    
+	     } 
+	     
      @GetMapping("/login")
      public String login() {        
          return "auth/login";
@@ -48,22 +49,22 @@ public class AuthController {
          return "auth/signup";
          
      }
-     
+ 
      @GetMapping("/paidsignup")
      public  String paidController(UserRepository userRepository) {
          this.userRepository = userRepository;
          
-		return "auth/paidsignup"; 
-         
+		return "auth/paidsignup";     
      }
-
+     
+     @PostMapping("/paidsignup")
      public String paidsignup(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {         
          User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());  
          userService.paidcreate(user);
           
-         return "auth/paidsignup"; 
-            
+     return "auth/paidsignup";  
      }
+     
      
      @PostMapping("/signup")
      public String signup(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) { 
