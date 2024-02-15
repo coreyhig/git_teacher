@@ -64,9 +64,6 @@ public class UserService {
          userRepository.save(user);
      }  
 
-
-   
-     
      // メールアドレスが登録済みかどうかをチェックする
      public boolean isEmailRegistered(String email) {
          User user = userRepository.findByEmail(email);  

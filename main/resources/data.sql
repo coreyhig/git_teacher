@@ -58,6 +58,7 @@ INSERT IGNORE INTO store (id, name, image_name, description, price, capacity, po
 
 INSERT IGNORE INTO roles (id, name) VALUES (1, 'ROLE_GENERAL');
 INSERT IGNORE INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
+INSERT IGNORE INTO roles (id, name) VALUES (3, 'ROLE_PAIDMENBER');
 
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (1, '侍 太郎', 'サムライ タロウ', '101-0022', '東京都千代田区神田練塀町300番地', '090-1234-5678', 'taro.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, true);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (2, '侍 花子', 'サムライ ハナコ', '101-0022', '東京都千代田区神田練塀町300番地', '090-1234-5678', 'hanako.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 2, true);
