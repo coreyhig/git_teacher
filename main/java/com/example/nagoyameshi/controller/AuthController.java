@@ -51,12 +51,12 @@ public class AuthController {
      
      @GetMapping("/paidsignup")
      public  String paidController(UserRepository userRepository) {
-         this.userRepository = userRepository; 
+         this.userRepository = userRepository;
          
-         return "auth/paidsignup"; 
+		return "auth/paidsignup"; 
+         
      }
-     
-     @GetMapping("/paidsignup")
+
      public String paidsignup(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {         
          User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());  
          userService.paidcreate(user);

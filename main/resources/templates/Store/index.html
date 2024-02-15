@@ -40,7 +40,7 @@
                                              <select class="form-control form-select" name="area">  
                                                  <option value="" hidden>選択してください</option>   
                                                  <optgroup label="千種区">                                      
-                                                     <option value="千種区" th:selected="${area == '千種区'}">北海道</option>
+                                                     <option value="千種区" th:selected="${area == '千種区'}">千種区</option>
                                                  </optgroup>                
                                                  <optgroup label="東区">                                  
                                                      <option value="相生町" th:selected="${area == '相生町'}">相生町</option>                                                
@@ -121,18 +121,18 @@
              
                              <div class="card mb-3">
                                  <div class="card-header">
-                                     1泊あたりの予算から探す
+                                     予算から探す
                                  </div>
                                  <div class="card-body">
                                      <form method="get" th:action="@{/Store}" class="w-100">
                                          <div class="form-group mb-3">    
                                              <select class="form-control form-select" name="price">
                                                  <option value="" hidden>選択してください</option> 
-                                                 <option value="6000" th:selected="${price == 6000}">6,000円以内</option>
-                                                 <option value="7000" th:selected="${price == 7000}">7,000円以内</option>
-                                                 <option value="8000" th:selected="${price == 8000}">8,000円以内</option>
-                                                 <option value="9000" th:selected="${price == 9000}">9,000円以内</option>
-                                                 <option value="10000" th:selected="${price == 10000}">10,000円以内</option>
+                                                 <option value="2000" th:selected="${price == 2000}">2,000円以内</option>
+                                                 <option value="3000" th:selected="${price == 3000}">3,000円以内</option>
+                                                 <option value="4000" th:selected="${price == 4000}">4,000円以内</option>
+                                                 <option value="5000" th:selected="${price == 5000}">5,000円以内</option>
+                                                 <option value="6000" th:selected="${price == 60000}">6,000円以内</option>
                                              </select>                                                                                
                                          </div>
                                          <div class="form-group">

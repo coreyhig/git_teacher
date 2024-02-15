@@ -125,7 +125,7 @@
                                              <div class="card-body"> 
                                                  <form method="get" th:action="@{/Store/__${Store.getId()}__/reservations/input}" th:object="${reservationInputForm}">                                                                                                                                                                       
                                                      <div class="form-group mb-2">                                            
-                                                         <label for="fromCheckinDateToCheckoutDate" class="col-form-label text-md-left fw-bold">チェックイン・チェックアウト</label>    
+                                                         <label for="fromCheckinDateToCheckoutDate" class="col-form-label text-md-left fw-bold">予約日</label>    
                                                          <div th:if="${#fields.hasErrors('fromCheckinDateToCheckoutDate')}" class="text-danger small mb-2" th:errors="*{fromCheckinDateToCheckoutDate}"></div>                                          
                                                          <input type="text" class="form-control" th:field="*{fromCheckinDateToCheckoutDate}">                                                                     
                                                      </div>
@@ -137,7 +137,7 @@
                                                      </div>
                                                                                                          
                                                      <div class="form-group">
-                                                         <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">有料会員登録する</button>
+                                                         <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">予約する</button>
                                                      </div>
                                                  </form>                                                                     
                                              </div>

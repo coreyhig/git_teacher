@@ -9,11 +9,11 @@ import lombok.Data;
  
  @Data
 public class ReservationInputForm {
-     @NotBlank(message = "予約日と予約日２を選択してください。")
+     @NotBlank(message = "予約日を選択してください。")
      private String fromCheckinDateToCheckoutDate;    
      
-     @NotNull(message = "予約人数を入力してください。")
-     @Min(value = 1, message = "予約人数は1人以上に設定してください。")
+     @NotNull(message = "ご利用人数を入力してください。")
+     @Min(value = 1, message = "ご利用人数は1人以上に設定してください。")
      private Integer numberOfPeople; 
  
      // 予約日を取得する
