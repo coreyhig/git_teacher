@@ -47,24 +47,23 @@ public class AuthController {
      public String signup(Model model) {        
          model.addAttribute("signupForm", new SignupForm());
          return "auth/signup";
-         
-     }
- 
-     @GetMapping("/paidsignup")
-     public  String paidController(UserRepository userRepository) {
-         this.userRepository = userRepository;
-         
-		return "auth/paidsignup";     
-     }
+      }
      
-     @PostMapping("/paidsignup")
+     
+     public String paidController(UserRepository userRepository) {
+         this.userRepository = userRepository;
+              
+           return "auth/paidsignup";  
+           
+       }
+     
+     @GetMapping("/paidsignup")
      public String paidsignup(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {         
          User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());  
          userService.paidcreate(user);
-          
-     return "auth/paidsignup";  
+         
+         return "auth/paidsignup";  
      }
-     
      
      @PostMapping("/signup")
      public String signup(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) { 
