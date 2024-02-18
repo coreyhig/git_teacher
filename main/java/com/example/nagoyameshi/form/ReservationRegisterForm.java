@@ -6,7 +6,11 @@ import lombok.Data;
  @Data
  @AllArgsConstructor
 public class ReservationRegisterForm {    
-     private Integer StoreId;
+     public ReservationRegisterForm(Integer id, Integer id2, String string, Integer numberOfPeople2) {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+	private Integer StoreId;
          
      private Integer userId;    
          
@@ -15,6 +19,5 @@ public class ReservationRegisterForm {
      private String checkoutDate;    
      
      private Integer numberOfPeople;
-     
-     private Integer amount;    
+       
 }

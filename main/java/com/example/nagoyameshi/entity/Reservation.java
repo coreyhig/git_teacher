@@ -31,16 +31,10 @@ public class Reservation {
      private User user;     
      
      @Column(name = "checkin_date")
-     private LocalDate checkinDate;
-     
-     @Column(name = "checkout_date")
-     private LocalDate checkoutDate;   
+     private LocalDate checkinDate;  
      
      @Column(name = "number_of_people")
-     private Integer numberOfPeople; 
-     
-     @Column(name = "amount")
-     private Integer amount;     
+     private Integer numberOfPeople;    
      
      @Column(name = "created_at", insertable = false, updatable = false)
      private Timestamp createdAt;

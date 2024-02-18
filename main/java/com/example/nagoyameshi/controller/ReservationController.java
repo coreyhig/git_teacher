@@ -91,15 +91,10 @@ public class ReservationController {
          Store Store = StoreRepository.getReferenceById(id);
          User user = userDetailsImpl.getUser(); 
                  
-         //チェックイン日とチェックアウト日を取得する
+         //予約日を取得する
          LocalDate checkinDate = reservationInputForm.getCheckinDate();
-         LocalDate checkoutDate = reservationInputForm.getCheckoutDate();
   
-         // 宿泊料金を計算する
-         Integer price = Store.getPrice();        
-         Integer amount = reservationService.calculateAmount(checkinDate, checkoutDate, price);
-         
-         ReservationRegisterForm reservationRegisterForm = new ReservationRegisterForm(Store.getId(), user.getId(), checkinDate.toString(), checkoutDate.toString(), reservationInputForm.getNumberOfPeople(), amount);
+         ReservationRegisterForm reservationRegisterForm = new ReservationRegisterForm(Store.getId(), user.getId(), checkinDate.toString(),  reservationInputForm.getNumberOfPeople() );
          
          String sessionId = stripeService.createStripeSession(Store.getName(), reservationRegisterForm, httpServletRequest);
          
