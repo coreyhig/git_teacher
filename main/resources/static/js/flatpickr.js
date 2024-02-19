@@ -4,5 +4,9 @@
  flatpickr('#fromCheckinDate', {
    locale: 'ja',
    minDate: 'today',
-   maxDate: maxDate
+   maxDate: maxDate,
+   minTime: '09:00',
+   maxTime: '18:00',
  });
+ 
+ 
