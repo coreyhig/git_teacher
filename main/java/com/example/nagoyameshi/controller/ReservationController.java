@@ -98,7 +98,6 @@ public class ReservationController {
          
          String sessionId = stripeService.createStripeSession(Store.getName(), reservationRegisterForm, httpServletRequest);
          
-
          model.addAttribute("Store", Store);  
          model.addAttribute("reservationRegisterForm", reservationRegisterForm); 
          model.addAttribute("sessionId", sessionId);
