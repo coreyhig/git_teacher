@@ -1,6 +1,6 @@
 package com.example.nagoyameshi.form;
 
- import java.time.LocalDate;
+import java.time.LocalDate;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -10,18 +10,23 @@ import lombok.Data;
  @Data
 public class ReservationInputForm {
      @NotBlank(message = "予約日を選択してください。")
-     private String fromCheckinDate;    
+     private String fromCheckinDate;
+     
+     @NotBlank(message = "予約時間を選択してください。")
+     private String fromCheckinTime;
      
      @NotNull(message = "ご利用人数を入力してください。")
      @Min(value = 1, message = "ご利用人数は1人以上に設定してください。")
      private Integer numberOfPeople;
-
-	private String[] getFromCheckinDate; 
  
      // 予約日を取得する
-     public LocalDate getCheckinDate() {
-		String[] checkinDate = getFromCheckinDate ;
-         return LocalDate.parse(checkinDate[0]);
-     }
+	public LocalDate getCheckinDate() {
+		return LocalDate.parse(fromCheckinDate);
+	}
+	
+    // 予約時間を取得する
+	public LocalDate getCheckinTime() {
+		return LocalDate.parse(fromCheckinTime);
 
+	}
 }

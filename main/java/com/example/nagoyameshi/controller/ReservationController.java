@@ -91,10 +91,11 @@ public class ReservationController {
          Store Store = StoreRepository.getReferenceById(id);
          User user = userDetailsImpl.getUser(); 
                  
-         //予約日を取得する
+         //予約日時を取得する
          LocalDate checkinDate = reservationInputForm.getCheckinDate();
-  
-         ReservationRegisterForm reservationRegisterForm = new ReservationRegisterForm(Store.getId(), user.getId(), checkinDate.toString(),  reservationInputForm.getNumberOfPeople() );
+         LocalDate checkinTime = reservationInputForm.getCheckinTime();
+         
+         ReservationRegisterForm reservationRegisterForm = new ReservationRegisterForm(Store.getId(), user.getId(), checkinDate.toString(), checkinTime.toString(),  reservationInputForm.getNumberOfPeople() );
          
          String sessionId = stripeService.createStripeSession(Store.getName(), reservationRegisterForm, httpServletRequest);
          

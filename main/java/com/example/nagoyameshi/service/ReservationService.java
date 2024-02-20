@@ -34,11 +34,13 @@ public class ReservationService {
          Store Store = StoreRepository.getReferenceById(StoreId); 
          User user = userRepository.getReferenceById(userId);
          LocalDate checkinDate = LocalDate.parse(paymentIntentObject.get("checkinDate"));
+         LocalDate checkinTime = LocalDate.parse(paymentIntentObject.get("checkinTime"));
          Integer numberOfPeople = Integer.valueOf(paymentIntentObject.get("numberOfPeople"));        
                  
          reservation.setStore(Store);
          reservation.setUser(user);
          reservation.setCheckinDate(checkinDate);
+         reservation.setCheckinTime(checkinTime);         
          reservation.setNumberOfPeople(numberOfPeople);
          
          reservationRepository.save(reservation);
