@@ -14,7 +14,9 @@ public class ReservationRegisterForm {
          
      private Integer userId;    
          
-     private String checkinDate;    
+     private String checkinDate; 
+     
+     private String checkinTime;
          
      private String checkoutDate;    
      

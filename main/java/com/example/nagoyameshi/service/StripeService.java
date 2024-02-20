@@ -43,7 +43,7 @@ public class StripeService {
                                      SessionCreateParams.LineItem.PriceData.ProductData.builder()
                                          .setName(StoreName)
                                          .build())
-                                 .setUnitAmount((long)reservationRegisterForm.getAmount())
+                             
                                  .setCurrency("jpy")                                
                                  .build())
                          .setQuantity(1L)
@@ -58,7 +58,7 @@ public class StripeService {
                          .putMetadata("checkinDate", reservationRegisterForm.getCheckinDate())
                          .putMetadata("checkoutDate", reservationRegisterForm.getCheckoutDate())
                          .putMetadata("numberOfPeople", reservationRegisterForm.getNumberOfPeople().toString())
-                         .putMetadata("amount", reservationRegisterForm.getAmount().toString())
+                 
                          .build())
                  .build();
          try {
