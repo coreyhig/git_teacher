@@ -1,6 +1,7 @@
 package com.example.nagoyameshi.form;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -25,8 +26,8 @@ public class ReservationInputForm {
 	}
 	
     // 予約時間を取得する
-	public LocalDate getCheckinTime() {
-		return LocalDate.parse(fromCheckinTime);
+	public LocalTime getCheckinTime() {
+		return LocalTime.parse(fromCheckinTime);
 
 	}
 }

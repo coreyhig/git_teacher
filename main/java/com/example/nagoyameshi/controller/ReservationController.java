@@ -1,6 +1,7 @@
 package com.example.nagoyameshi.controller;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.nagoyameshi.entity.Reservation;
@@ -26,22 +28,17 @@ import com.example.nagoyameshi.repository.ReservationRepository;
 import com.example.nagoyameshi.repository.StoreRepository;
 import com.example.nagoyameshi.security.UserDetailsImpl;
 import com.example.nagoyameshi.service.ReservationService;
-import com.example.nagoyameshi.service.StripeService;
-
-import jakarta.servlet.http.HttpServletRequest;
  
  @Controller
 public class ReservationController {
      private final ReservationRepository reservationRepository;
      private final StoreRepository StoreRepository;
      private final ReservationService reservationService; 
-     private final StripeService stripeService; 
      
-     public ReservationController(ReservationRepository reservationRepository, StoreRepository StoreRepository, ReservationService reservationService, StripeService stripeService) {      
+     public ReservationController(ReservationRepository reservationRepository, StoreRepository StoreRepository, ReservationService reservationService) {      
          this.reservationRepository = reservationRepository;
          this.StoreRepository = StoreRepository;
          this.reservationService = reservationService;
-         this.stripeService = stripeService;
      }    
  
      @GetMapping("/reservations")
@@ -66,7 +63,7 @@ public class ReservationController {
          
          if (numberOfPeople != null) {
              if (!reservationService.isWithinCapacity(numberOfPeople, capacity)) {
-                 FieldError fieldError = new FieldError(bindingResult.getObjectName(), "numberOfPeople", "宿泊人数が定員を超えています。");
+                 FieldError fieldError = new FieldError(bindingResult.getObjectName(), "numberOfPeople", "人数が定員を超えています。");
                  bindingResult.addError(fieldError);                
              }            
          }         
@@ -85,7 +82,6 @@ public class ReservationController {
      public String confirm(@PathVariable(name = "id") Integer id,
                            @ModelAttribute ReservationInputForm reservationInputForm,
                            @AuthenticationPrincipal UserDetailsImpl userDetailsImpl,  
-                           HttpServletRequest httpServletRequest,
                            Model model) 
      {        
          Store Store = StoreRepository.getReferenceById(id);
@@ -93,24 +89,21 @@ public class ReservationController {
                  
          //予約日時を取得する
          LocalDate checkinDate = reservationInputForm.getCheckinDate();
-         LocalDate checkinTime = reservationInputForm.getCheckinTime();
+         LocalTime checkinTime = reservationInputForm.getCheckinTime();
          
-         ReservationRegisterForm reservationRegisterForm = new ReservationRegisterForm(Store.getId(), user.getId(), checkinDate.toString(), checkinTime.toString(),  reservationInputForm.getNumberOfPeople() );
-         
-         String sessionId = stripeService.createStripeSession(Store.getName(), reservationRegisterForm, httpServletRequest);
+         ReservationRegisterForm reservationRegisterForm = new ReservationRegisterForm(Store.getId(), user.getId(), checkinDate.toString(), checkinTime.toString(), reservationInputForm.getNumberOfPeople() );
          
          model.addAttribute("Store", Store);  
          model.addAttribute("reservationRegisterForm", reservationRegisterForm); 
-         model.addAttribute("sessionId", sessionId);
          
          return "reservations/confirm";
      }
-     /*   
+     
      @PostMapping("/Store/{id}/reservations/create")
      public String create(@ModelAttribute ReservationRegisterForm reservationRegisterForm) {                
          reservationService.create(reservationRegisterForm);        
          
          return "redirect:/reservations?reserved";
      }
-     */ 
+    
 }
